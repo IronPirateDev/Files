@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+            font-size: 50px;
+            background-color: #000000;
+            color: #ffffff; /* Set text color to white */
+            margin: 0;
+        }
+
+        .entry-box {
+            margin-top: 50px;
+        }
+
+        input[type="text"] {
+            width: 600px;
+            padding: 10px;
+            font-size: 25px;
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border: 1px solid #1a1a1a;
+            border-radius: 40px;
+            box-sizing: border-box;
+            margin-top: 20px;
+            background-color: #b0bdc1;
+        }
+        input[type="text"]::placeholder 
+        {
+            color: #2e2b2b; /* Light gray color */
+        }
+
+        button {
+            background-color: #7f0000;
+            color: #ffffff; /* Set text color to white */
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 25px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 20px; /* Reduced margin */
+            margin-top: 50px;
+        }
+
+        button:hover {
+            background-color: #240000;
+        }
+
+        .image-container {
+            margin-left: 25%;
+            position: relative;
+            width: 50%; /* Set the width of the container */
+            height: 300px; /* Set the height of the container */
+            overflow: hidden; /* Hide any overflow */
+        }
+
+        .image-container img {
+            width: 49%; /* Make the image fill the container */
+            top: 0;
+            left: 480px;
+        }
+        @media (max-width: 768px) {
+        body {
+            font-size: 30px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            font-size: 20px;
+            margin-bottom: 10%;
+        }
+
+        button {
+            font-size: 20px;
+            margin: 10px;
+            width: 70%;
+        }
+
+        .image-container {
+            margin-left: 0;
+            width: 100%;
+            height: auto;
+        }
+
+        .image-container img {
+            width: 100%;
+            left: 0;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div id="popup" class="popup">
+        <span class="popuptext" id="popup-text">{{ message }}</span>
+    </div>    
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='BusLogo.png') }}" alt="Your Image">
+    </div>
+
+    <div class="entry-box">
+        <form action="/err" method="post">                                             
+            <input type="text" id="car_number" name="car_number" required placeholder="Enter the Bus Number">
+            <br>
+            <button type="submit" name="btnpr" value="det">View Bus Details</button>
+            <button type="submit" name="btnpr" value="livloc">View Live Bus Location</button>
+        </form>        
+    </div>
+    <script>
+        function showPopup(message) {
+            var popup = document.getElementById("popup");
+            var popupText = document.getElementById("popup-text");
+            popup.style.display = "block";
+            popupText.innerHTML = message;
+            setTimeout(function() {
+                popup.style.display = "none";
+            }, 3000); // Hide the popup after 3 seconds (adjust as needed)
+        }
+    </script>
+    
+</body>
+</html>

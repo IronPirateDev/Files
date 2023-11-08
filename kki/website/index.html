@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EazePark</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            flex-direction: column;
+        }
+
+        h1{
+            color: #333;
+            font-size: 60px;
+        }
+        h2{
+            color: #333;
+            font-size: 30px;
+        }
+
+        .button {
+            padding: 12px 20px;
+            font-size: 20px;
+            margin: 7px;
+            background-color: #076ae0;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #076ae0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome Admin User</h1>
+    <h2>Select an Operation to Commit</h2>
+    <button class="button" onclick="sendOption('1')">Generate Report</button>
+    <button class="button" onclick="sendOption('2')">Add a User</button>
+    <button class="button" onclick="sendOption('3')">Remove A User</button>
+    <button class="button" onclick="sendOption('4')">Modify Car_No Table</button>
+
+    <script>
+        function sendOption(option) {
+            fetch('/process_option', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ option: option }),
+            });
+        }
+    </script>
+</body>
+</html>

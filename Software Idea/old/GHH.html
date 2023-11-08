@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Google Maps Display</title>
+  <style>
+    /* Set the map container size */
+    #map {
+      margin-top: 50%;
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <script>
+    function initMap() {
+      // Coordinates
+      var coordinates = {lat: 13.12660280054673, lng: 77.6283527846325}; // Replace with your desired coordinates
+
+      // Create a map centered on the specified coordinates
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: coordinates,
+        zoom: 15 // Adjust the zoom level as needed
+      });
+
+      // Define a custom marker icon using an emoji
+      var busIcon = {
+        url: 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><text x="50%" y="50%" font-size="12" text-anchor="middle" dominant-baseline="middle">🚌</text></svg>',
+        scaledSize: new google.maps.Size(40, 40), // Adjust the size as needed
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(20, 40) // Position of the marker relative to the icon image
+      };
+
+      // Add a marker with the custom bus icon
+      var marker = new google.maps.Marker({
+        position: coordinates,
+        map: map,
+        icon: busIcon,
+        title: 'Your Location'
+      });
+
+      // Function to refresh the map
+      function refreshMap() {
+        map.setCenter(coordinates);
+      }
+
+      // Refresh the map every 10 seconds
+      setInterval(refreshMap, 10000);
+    }
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
+</body>
+
+</html>
